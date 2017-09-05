@@ -8,10 +8,10 @@ setup_args = dict(
     name="tmpnb",
     version="0.1.0",
     description="Tool for launching temporary Jupyter notebook servers",
-    url="https://github.com/jupyter/tmpnb",
+    url="https://github.com/HarryTanME/tmpnb",
     license="BSD",
     author="Jupyter Development Team",
-    author_email="jupyter@googlegroups.com",
+    author_email="tan6043@gmail.com",
     platforms="Linux, Mac OS X"
 )
 
