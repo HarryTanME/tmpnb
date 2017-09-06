@@ -34,7 +34,7 @@ proxy: proxy-image network
 		-p 8001:8001 \
 		--name proxy \
 		jupyter/configurable-http-proxy \
-		--default-target http://tmpnb:9999 --api-ip 0.0.0.0
+		--default-target http://tmpnb:9999 --api-ip 0.0.0.0 --log-level debug
 
 tmpnb: minimal-image tmpnb-image network
 	docker run -d -e CONFIGPROXY_AUTH_TOKEN=devtoken \
@@ -42,10 +42,11 @@ tmpnb: minimal-image tmpnb-image network
 		--network $(DOCKER_NETWORK_NAME) \
 		--name tmpnb \
 		-v /var/run/docker.sock:/docker.sock jupyter/tmpnb python orchestrate.py \
-		--image="jupyter/minimal-notebook" --cull_timeout=$(CULL_TIMEOUT) --cull_period=$(CULL_PERIOD) \
+		--image="wodeai/tensorflow:py2" --cull_timeout=$(CULL_TIMEOUT) --cull_period=$(CULL_PERIOD) \
 		--logging=$(LOGGING) --pool_size=$(POOL_SIZE) --cull_max=$(CULL_MAX) \
 		--docker_network=$(DOCKER_NETWORK_NAME) \
-                --use_tokens=1
+                --use_tokens=0 --command='jupyter notebook  $* --allow-root --no-browser --ip=0.0.0.0  --NotebookApp.base_url={base_path} --NotebookApp.port_retries=0  --NotebookApp.token="" --NotebookApp.disable_check_xsrf=True ~'
+
 
 dev: cleanup network proxy tmpnb open
 
