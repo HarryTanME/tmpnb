@@ -28,7 +28,7 @@ network:
 	@docker network inspect $(DOCKER_NETWORK_NAME) >/dev/null 2>&1 || docker network create $(DOCKER_NETWORK_NAME)
 
 proxy: proxy-image network
-	docker run -d -e CONFIGPROXY_AUTH_TOKEN=service nginx start \
+	docker run -d -e CONFIGPROXY_AUTH_TOKEN=devtoken \
 		--network $(DOCKER_NETWORK_NAME) \
 		-p 80:8000 \
 		-p 8001:8001 \
