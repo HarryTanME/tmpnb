@@ -28,7 +28,7 @@ network:
 	@docker network inspect $(DOCKER_NETWORK_NAME) >/dev/null 2>&1 || docker network create $(DOCKER_NETWORK_NAME)
 
 proxy: proxy-image network
-	docker run -d -e CONFIGPROXY_AUTH_TOKEN=devtoken \
+	docker run -d -e CONFIGPROXY_AUTH_TOKEN=service nginx start \
 		--network $(DOCKER_NETWORK_NAME) \
 		-p 80:8000 \
 		-p 8001:8001 \
@@ -54,8 +54,8 @@ open:
 	-open http:`echo $(DOCKER_HOST) | cut -d":" -f2`:80
 
 cleanup:
-	-docker stop `docker ps -aq --filter name=tmpnb --filter name=proxy --filter name=minimal-notebook`
-	-docker rm   `docker ps -aq --filter name=tmpnb --filter name=proxy --filter name=minimal-notebook`
+	-docker stop $(docker ps -a -q) #`docker ps -aq --filter name=tmpnb --filter name=proxy --filter name=minimal-notebook`
+	-docker rm   $(docker ps -a -q) #`docker ps -aq --filter name=tmpnb --filter name=proxy --filter name=minimal-notebook`
 	-docker images -q --filter "dangling=true" | xargs docker rmi
 
 log-tmpnb:
