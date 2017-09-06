@@ -45,7 +45,7 @@ tmpnb: minimal-image tmpnb-image network
 		--image="wodeai/tensorflow:py2" --cull_timeout=$(CULL_TIMEOUT) --cull_period=$(CULL_PERIOD) \
 		--logging=$(LOGGING) --pool_size=$(POOL_SIZE) --cull_max=$(CULL_MAX) \
 		--docker_network=$(DOCKER_NETWORK_NAME) \
-		--use_tokens=0 --command='jupyter notebook --allow-root --no-browser --ip=0.0.0.0  --NotebookApp.base_url={base_path} --NotebookApp.port_retries=0  --NotebookApp.token="" --NotebookApp.disable_check_xsrf=True ~'
+		--use_tokens=0 --command='jupyter notebook  $* --allow-root --no-browser --ip=0.0.0.0  --NotebookApp.base_url={base_path} --NotebookApp.port_retries=0  --NotebookApp.token="" --NotebookApp.disable_check_xsrf=True ~'
 
 dev: cleanup network proxy tmpnb open
 
