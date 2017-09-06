@@ -42,20 +42,23 @@ tmpnb: minimal-image tmpnb-image network
 		--network $(DOCKER_NETWORK_NAME) \
 		--name tmpnb \
 		-v /var/run/docker.sock:/docker.sock jupyter/tmpnb python orchestrate.py \
-		--image="wodeai/tensorflow:py2" --cull_timeout=$(CULL_TIMEOUT) --cull_period=$(CULL_PERIOD) \
+		--image="wodeai/tensorflow" --cull_timeout=$(CULL_TIMEOUT) --cull_period=$(CULL_PERIOD) \
 		--logging=$(LOGGING) --pool_size=$(POOL_SIZE) --cull_max=$(CULL_MAX) \
 		--docker_network=$(DOCKER_NETWORK_NAME) \
-    	--use_tokens=0 --command='jupyter notebook  $* --allow-root --no-browser --ip=0.0.0.0  --NotebookApp.base_url={base_path} --NotebookApp.port_retries=0  --NotebookApp.token="" --NotebookApp.disable_check_xsrf=True ~'
+	        --use_tokens=0 
 
-dev: cleanup network proxy tmpnb open
+dev: cleanup network proxy tmpnb check #open
 
 open:
 	docker ps | grep tmpnb
 	-open http:`echo $(DOCKER_HOST) | cut -d":" -f2`:80
 
+check:
+	docker ps -a
+
 cleanup:
-	-docker stop $(docker ps -a -q) #`docker ps -aq --filter name=tmpnb --filter name=proxy --filter name=minimal-notebook`
-	-docker rm   $(docker ps -a -q) #`docker ps -aq --filter name=tmpnb --filter name=proxy --filter name=minimal-notebook`
+	-docker stop `docker ps -a -q` #`docker ps -aq --filter name=tmpnb --filter name=proxy --filter name=minimal-notebook`
+	-docker rm   `docker ps -a -q` #`docker ps -aq --filter name=tmpnb --filter name=proxy --filter name=minimal-notebook`
 	-docker images -q --filter "dangling=true" | xargs docker rmi
 
 log-tmpnb:
@@ -63,5 +66,6 @@ log-tmpnb:
 
 log-proxy:
 	docker logs -f proxy
+
 
 .PHONY: cleanup
