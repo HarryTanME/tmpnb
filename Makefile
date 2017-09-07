@@ -4,7 +4,7 @@ CULL_PERIOD ?= 600
 CULL_TIMEOUT ?= 600
 CULL_MAX ?= 14400
 LOGGING ?= debug
-POOL_SIZE ?= 20
+POOL_SIZE ?= 4
 DOCKER_HOST ?= 127.0.0.1
 DOCKER_NETWORK_NAME ?= tmpnb
 
@@ -45,6 +45,7 @@ tmpnb: minimal-image tmpnb-image network
 		--image="wodeai/tensorflow:dev" --cull_timeout=$(CULL_TIMEOUT) --cull_period=$(CULL_PERIOD) \
 		--logging=$(LOGGING) --pool_size=$(POOL_SIZE) --cull_max=$(CULL_MAX) \
 		--docker_network=$(DOCKER_NETWORK_NAME) \
+		--host-directories=/data \
 	        --use_tokens=0 --mem-limit=2048000000 
 
 dev: cleanup network proxy tmpnb check #open
