@@ -1,7 +1,0 @@
-mkdir github
-cd github
-mkdir fast.ai
-cd fast.ai
-git clone https://github.com/fastai/courses.git
-
-ssh -i "myfirstLinux.pem" ec2-user@ec2-34-211-42-14.us-west-2.compute.amazonaws.com
