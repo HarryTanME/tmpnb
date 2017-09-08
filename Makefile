@@ -42,7 +42,7 @@ tmpnb: minimal-image tmpnb-image network
 		--network $(DOCKER_NETWORK_NAME) \
 		--name tmpnb \
 		-v /var/run/docker.sock:/docker.sock jupyter/tmpnb python orchestrate.py \
-		--image="wodeai/tensorflow:dev" --cull_timeout=$(CULL_TIMEOUT) --cull_period=$(CULL_PERIOD) \
+		--image="wodeai/tensorflow" --cull_timeout=$(CULL_TIMEOUT) --cull_period=$(CULL_PERIOD) \
 		--logging=$(LOGGING) --pool_size=$(POOL_SIZE) --cull_max=$(CULL_MAX) \
 		--docker_network=$(DOCKER_NETWORK_NAME) \
 		--host-directories=/data \
