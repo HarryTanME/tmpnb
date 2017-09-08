@@ -36,7 +36,7 @@ proxy: proxy-image network
 		jupyter/configurable-http-proxy \
 		--default-target http://tmpnb:9999 --api-ip 0.0.0.0 --log-level debug
 
-tmpnb: minimal-image tmpnb-image network
+tmpnb: tmpnb-image network
 	docker run -d -e CONFIGPROXY_AUTH_TOKEN=devtoken \
 		-e CONFIGPROXY_ENDPOINT=http://proxy:8001 \
 		--network $(DOCKER_NETWORK_NAME) \
@@ -47,7 +47,7 @@ tmpnb: minimal-image tmpnb-image network
 		--docker_network=$(DOCKER_NETWORK_NAME) \
 		--host-directories=/data \
 	        --use_tokens=0 --mem-limit=2048000000 
-
+#		--command="ln -s /mnt/vol0 ~/data && jupyter notebook $@ "
 dev: cleanup network proxy tmpnb check #open
 
 open:

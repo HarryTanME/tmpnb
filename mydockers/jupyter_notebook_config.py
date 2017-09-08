@@ -14,13 +14,14 @@
 # ==============================================================================
 import os
 from IPython.lib import passwd
-c.NotebookApp.token = '71a1799c498429f4fadf04698887c34dd0b8a198'
+#c.NotebookApp.token = '71a1799c498429f4fadf04698887c34dd0b8a198'
 c.NotebookApp.ip = '*'
 #c.NotebookApp.port = int(os.getenv('PORT', 8888))
 c.NotebookApp.port = 8888
 c.NotebookApp.open_browser = False
 c.MultiKernelManager.default_kernel_name = 'python2'
-c.NotebookApp.base_url = '/do/'
+#c.NotebookApp.base_url = '/do/'
+
 
 # sets a password if PASSWORD is set in the environment
 if 'PASSWORD' in os.environ:
