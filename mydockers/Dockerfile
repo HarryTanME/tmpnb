@@ -1,45 +1,19 @@
-FROM jupyter/tensorflow-notebook
-USER root
+FROM python:3.4-wheezy
 
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
-	useradd -m wodeai
-	
-RUN apt-get -y update && \
-#    apt-add-repository -y universe && \
-    apt-get install -y unzip && \
-    apt-get install -y libncurses5-dev && \
-    apt-get install -y software-properties-common && \
-    apt-get install -y python-dev && \
-    apt-get install -y python-pip && \
-    apt-get install -y libjpeg8-dev && \
-    ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib && \
-    pip install pillow && \
-    apt-get install -y libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev
+RUN apt-get update && apt-get install python-dev libcurl4-openssl-dev -y
+RUN pip install --upgrade pip
 
-USER jovyan
+RUN mkdir -p /srv/tmpnb
+WORKDIR /srv/tmpnb/
 
-RUN conda create -y -n py27 python=2.7 && \
-    source activate py27 && \
-    conda install notebook ipykernel && \
-    ipython kernel install --user && \
-    conda install -y bcolz && \
-    wget https://raw.githubusercontent.com/HarryTanME/video_mgt/master/commands/requirements.txt && \
-    pip install -r requirements.txt && \
-    source deactivate  && \
-    source activate root  && \
-    conda install notebook ipykernel && \
-    ipython kernel install --user && \
-    pip install -r requirements.txt && \
-    source deactivate  && \
-    rm -f requirements.txt
+# Copy the requirements.txt in by itself first to avoid docker cache busting
+# any time any file in the project changes
+COPY requirements.txt /srv/tmpnb/requirements.txt
+RUN pip install -r requirements.txt
 
-RUN  wget https://raw.githubusercontent.com/HarryTanME/video_mgt/master/commands/docker_init.sh && \
-     sh docker_init.sh && \
-     rm -f docker_init.sh 
-    
-COPY jupyter_notebook_config.py ~/.jupyter/
+# Now copy in everything else
+COPY . /srv/tmpnb/
 
-# TensorBoard
-EXPOSE 6006 8888
+ENV DOCKER_HOST unix://docker.sock
 
-CMD jupyter notebook "$@"  --allow-root  --port={port}  --NotebookApp.base_url={base_path}  --NotebookApp.port_retries=0  --NotebookApp.token="" --ip=0.0.0.0 ~
+CMD python orchestrate.py
