@@ -14,11 +14,11 @@ unzip spring1617_assignment2.zip
 unzip spring1617_assignment3_v3.zip
 rm -f *.zip
 
-#cd ~/notebooks/cs231n/assignment1/cs231n/datasets
-#sh get_datasets.sh
-#
-#cd ~/notebooks/cs231n/assignment2/cs231n/datasets
-#sh get_datasets.sh
+cd ~/notebooks/cs231n/assignment1/cs231n/datasets
+sh get_datasets.sh
+
+cd ~/notebooks/cs231n/assignment2/cs231n/datasets
+sh get_datasets.sh
 
 
 
