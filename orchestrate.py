@@ -303,7 +303,7 @@ If host_network=True, the starting port assigned to notebook servers on the host
 
         """)
     )
-    tornado.options.define('image', default="wodeai/",
+    tornado.options.define('image', default="wodeai/tensorflow",
         help="Docker container to spawn for new users. Must be on the system already"
     )
     tornado.options.define('docker_version', default="auto",

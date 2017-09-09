@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="166933ae-1b65-4310-86b4-3456c969afcf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mydockers/docker_init copy.sh" afterPath="$PROJECT_DIR$/mydockers/docker_init copy.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mydockers/requirements.txt" afterPath="$PROJECT_DIR$/mydockers/requirements.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/script/deploy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dockworker.py" afterPath="$PROJECT_DIR$/dockworker.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orchestrate.py" afterPath="$PROJECT_DIR$/orchestrate.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,26 +17,27 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="dockworker.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dockworker.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dockworker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="147" column="48" lean-forward="false" selection-start-line="147" selection-start-column="39" selection-end-line="147" selection-end-column="48" />
+            <state relative-caret-position="315">
+              <caret line="136" column="38" lean-forward="true" selection-start-line="136" selection-start-column="38" selection-end-line="136" selection-end-column="38" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#603#1522#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orchestrate.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="orchestrate.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orchestrate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4320">
-              <caret line="355" column="23" lean-forward="false" selection-start-line="355" selection-start-column="23" selection-end-line="355" selection-end-column="23" />
+            <state relative-caret-position="292">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
                 <element signature="e#47#62#0" expanded="true" />
-                <element signature="e#409#2604#0" expanded="false" />
+                <element signature="e#3525#5263#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -45,8 +46,8 @@
       <file leaf-file-name="spawnpool.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spawnpool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state relative-caret-position="270">
+              <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -75,6 +76,8 @@
       <find>token</find>
       <find>mem_limit</find>
       <find>directories</find>
+      <find>user</find>
+      <find>host_directories</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -85,6 +88,7 @@
       <list>
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/orchestrate.py" />
+        <option value="$PROJECT_DIR$/dockworker.py" />
       </list>
     </option>
   </component>
@@ -200,16 +204,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spawnpool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -234,23 +228,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dockworker.py">
+    <entry file="file://$PROJECT_DIR$/orchestrate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="147" column="48" lean-forward="false" selection-start-line="147" selection-start-column="39" selection-end-line="147" selection-end-column="48" />
+        <state relative-caret-position="292">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#47#62#0" expanded="true" />
+            <element signature="e#3525#5263#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orchestrate.py">
+    <entry file="file://$PROJECT_DIR$/spawnpool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4320">
-          <caret line="355" column="23" lean-forward="false" selection-start-line="355" selection-start-column="23" selection-end-line="355" selection-end-column="23" />
+        <state relative-caret-position="270">
+          <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           <folding>
-            <element signature="e#47#62#0" expanded="true" />
-            <element signature="e#409#2604#0" expanded="false" />
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dockworker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="136" column="38" lean-forward="true" selection-start-line="136" selection-start-column="38" selection-end-line="136" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#603#1522#0" expanded="false" />
           </folding>
         </state>
       </provider>

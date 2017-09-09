@@ -45,7 +45,7 @@ tmpnb: tmpnb-image network
 		--image="wodeai/tensorflow" --cull_timeout=$(CULL_TIMEOUT) --cull_period=$(CULL_PERIOD) \
 		--logging=$(LOGGING) --pool_size=$(POOL_SIZE) --cull_max=$(CULL_MAX) \
 		--docker_network=$(DOCKER_NETWORK_NAME) \
-		--host-directories=/data \
+		--host-directories=/data:/home/jovyan/data \
 	        --use_tokens=0 --mem-limit=2048000000 
 #		--command="ln -s /mnt/vol0 ~/data && jupyter notebook $@ "
 dev: cleanup network proxy tmpnb check #open
