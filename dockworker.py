@@ -129,15 +129,21 @@ class DockerSpawner():
         if container_config.host_directories:
             directories = container_config.host_directories.split(",")
             for index, item in enumerate(directories):
-                directory = item.split(":")[0]
+                fromdirectory = item.split(":")[0]
+                todirectory = item.split(":")[1]
                 try:
-                    permissions = item.split(":")[1]
+                    permissions = item.split(":")[2]
                 except IndexError:
                     permissions = 'rw'
 
-                volumes.append('/mnt/vol' + str(index))
-                volume_bindings[directory] = {
-                    'bind': '/mnt/vol' + str(index),
+                # volumes.append('/mnt/vol' + str(index))
+                # volume_bindings[fromdirectory] = {
+                #     'bind': '/mnt/vol' + str(index),
+                #     'mode': permissions
+                # }
+                volumes.append(todirectory)
+                volume_bindings[fromdirectory] = {
+                    'bind': todirectory,
                     'mode': permissions
                 }
 
