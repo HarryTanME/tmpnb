@@ -18,24 +18,24 @@ RUN apt-get -y update && \
 
 USER jovyan
 
+COPY requirements.txt ~
+COPY docker_init.sh ~
+
 RUN conda create -y -n py27 python=2.7 && \
     source activate py27 && \
     conda install notebook ipykernel && \
     ipython kernel install --user && \
     conda install -y bcolz && \
-    wget https://raw.githubusercontent.com/HarryTanME/video_mgt/master/commands/requirements.txt && \
-    pip install -r requirements.txt && \
+    pip install -r ~/requirements.txt && \    
     source deactivate  && \
     source activate root  && \
     conda install notebook ipykernel && \
     ipython kernel install --user && \
-    pip install -r requirements.txt && \
+    pip install -r ~/requirements.txt && \
     source deactivate  && \
-    rm -f requirements.txt
-
-RUN  wget https://raw.githubusercontent.com/HarryTanME/video_mgt/master/commands/docker_init.sh && \
-     sh docker_init.sh && \
-     rm -f docker_init.sh 
+    rm -f ~/Requirements.txt && \
+    sh docker_init.sh && \
+    rm -f ~/docker_init.sh 
     
 RUN mkdir ~/.jupyter/
 COPY jupyter_notebook_config.py /home/jovyan/.jupyter/jupyter_notebook_config.py
