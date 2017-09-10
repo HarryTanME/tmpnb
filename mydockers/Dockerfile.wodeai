@@ -18,8 +18,9 @@ RUN apt-get -y update && \
 
 USER jovyan
 
-COPY requirements.txt ~
-COPY docker_init.sh ~
+COPY requirements.txt /home/jovyan/
+COPY docker_init.sh /home/jovyan/
+COPY custom.js /home/jovyan/.jupyter/custom/
 
 RUN conda create -y -n py27 python=2.7 && \
     source activate py27 && \
