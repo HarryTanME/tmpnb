@@ -4,7 +4,7 @@ CULL_PERIOD ?= 600
 CULL_TIMEOUT ?= 600
 CULL_MAX ?= 14400
 LOGGING ?= debug
-POOL_SIZE ?= 4
+POOL_SIZE ?= 20
 DOCKER_HOST ?= 127.0.0.1
 DOCKER_NETWORK_NAME ?= tmpnb
 
@@ -46,7 +46,7 @@ tmpnb: tmpnb-image network
 		--logging=$(LOGGING) --pool_size=$(POOL_SIZE) --cull_max=$(CULL_MAX) \
 		--docker_network=$(DOCKER_NETWORK_NAME) \
 		--host-directories=/data:/home/jovyan/data \
-	        --use_tokens=0 --mem-limit=2048000000 
+	        --use_tokens=0 --mem-limit=20480000000 
 #		--command="ln -s /mnt/vol0 ~/data && jupyter notebook $@ "
 dev: cleanup network proxy tmpnb check #open
 
