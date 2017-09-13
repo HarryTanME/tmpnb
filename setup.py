@@ -10,7 +10,7 @@ setup_args = dict(
     description="Tool for launching temporary Jupyter notebook servers",
     url="https://github.com/HarryTanME/tmpnb",
     license="BSD",
-    author="Wode.Ai",
+    author="Wode.AI",
     author_email="tan6043@gmail.com",
     platforms="Linux, Mac OS X"
 )

@@ -13,8 +13,8 @@ sudo service docker start
 
 cd ~
 git clone https://github.com/HarryTanME/tmpnb.git
-cd tmpnb/mydockers/
-docker build -t wodeai/tensorflow -f Dockerfile.wodeai .
+#cd tmpnb/mydockers/
+#docker build -t wodeai/tensorflow -f Dockerfile.wodeai .
 
-cd ..
+cd ~/tmpnb
 make dev
