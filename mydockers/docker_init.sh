@@ -47,3 +47,5 @@ rm -f *.zip
 
 cd ~/notebooks
 git clone https://github.com/aymericdamien/TensorFlow-Examples
+
+git clone https://github.com/HarryTanME/TensorFlow-Tutorials.git

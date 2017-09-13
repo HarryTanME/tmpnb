@@ -18,30 +18,37 @@ RUN apt-get -y update && \
 
 USER jovyan
 
+COPY docker_init.sh /home/jovyan/
+RUN sh docker_init.sh && \
+    rm -f ~/docker_init.sh && \
+    mkdir /home/jovyan/.jupyter/
+
+COPY requirements.txt /home/jovyan/
 RUN conda create -y -n py27 python=2.7 && \
     source activate py27 && \
     conda install notebook ipykernel && \
     ipython kernel install --user && \
     conda install -y bcolz && \
-    wget https://raw.githubusercontent.com/HarryTanME/video_mgt/master/commands/requirements.txt && \
-    pip install -r requirements.txt && \
+    pip install -r ~/requirements.txt && \    
     source deactivate  && \
     source activate root  && \
     conda install notebook ipykernel && \
     ipython kernel install --user && \
-    pip install -r requirements.txt && \
+    pip install -r ~/requirements.txt && \
     source deactivate  && \
-    rm -f requirements.txt
-
-RUN  wget https://raw.githubusercontent.com/HarryTanME/video_mgt/master/commands/docker_init.sh && \
-     sh docker_init.sh && \
-     rm -f docker_init.sh 
+    rm -f /home/jovyan/Requirements.txt
     
-RUN mkdir ~/.jupyter/
-COPY jupyter_notebook_config.py /home/jovyan/.jupyter/jupyter_notebook_config.py
 
 # TensorBoard
 EXPOSE 6006 8888
 
-CMD jupyter notebook "$@"  --allow-root  --port={port}  --NotebookApp.base_url={base_path}  --NotebookApp.port_retries=0  --NotebookApp.token="" --ip=0.0.0.0 ~
+#CMD ['/usr/local/bin/start-notebook.sh']
 
+COPY jupyter_notebook_config.py /home/jovyan/.jupyter/jupyter_notebook_config.py
+COPY custom.js /home/jovyan/.jupyter/custom/
+
+#COPY start-notebook.sh /usr/local/bin/
+#COPY start-singleuser.sh /usr/local/bin/
+#COPY start.sh /usr/local/bin/
+#COPY jupyter_notebook_config.py /etc/jupyter/
+#RUN fix-permissions /etc/jupyter/
