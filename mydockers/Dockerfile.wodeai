@@ -18,10 +18,12 @@ RUN apt-get -y update && \
 
 USER jovyan
 
-COPY requirements.txt /home/jovyan/
 COPY docker_init.sh /home/jovyan/
-COPY custom.js /home/jovyan/.jupyter/custom/
+RUN sh docker_init.sh && \
+    rm -f ~/docker_init.sh && \
+    mkdir /home/jovyan/.jupyter/
 
+COPY requirements.txt /home/jovyan/
 RUN conda create -y -n py27 python=2.7 && \
     source activate py27 && \
     conda install notebook ipykernel && \
@@ -34,18 +36,16 @@ RUN conda create -y -n py27 python=2.7 && \
     ipython kernel install --user && \
     pip install -r ~/requirements.txt && \
     source deactivate  && \
-    rm -f ~/Requirements.txt && \
-    sh docker_init.sh && \
-    rm -f ~/docker_init.sh 
+    rm -f /home/jovyan/Requirements.txt
     
-RUN mkdir ~/.jupyter/
-COPY jupyter_notebook_config.py /home/jovyan/.jupyter/jupyter_notebook_config.py
 
 # TensorBoard
 EXPOSE 6006 8888
 
 #CMD ['/usr/local/bin/start-notebook.sh']
 
+COPY jupyter_notebook_config.py /home/jovyan/.jupyter/jupyter_notebook_config.py
+COPY custom.js /home/jovyan/.jupyter/custom/
 
 #COPY start-notebook.sh /usr/local/bin/
 #COPY start-singleuser.sh /usr/local/bin/
